@@ -17,6 +17,7 @@ contract Auction {
 
     mapping(uint256 => AuctionItem) public auctions;
 
+    event AuctionEndAttempt(uint256 auctionId, uint256 blockTimestamp, uint256 auctionEndTime);
     event AuctionCreated(uint256 auctionId, address indexed creator, string itemRef, uint256 startPrice, uint256 endTime);
     event BidPlaced(uint256 auctionId, string itemRef, address indexed bidder, uint256 amount);
     event AuctionEnded(uint256 auctionId, address indexed winner, uint256 winningBid);
@@ -34,7 +35,6 @@ contract Auction {
     }
 
     modifier auctionActive(uint256 auctionId) {
-        require(block.timestamp < auctions[auctionId].endTime, "Auction has ended");
         require(!auctions[auctionId].ended, "Auction is already ended");
         _;
     }
@@ -84,24 +84,15 @@ contract Auction {
     function endAuction(uint256 auctionId) external auctionActive(auctionId) {
         AuctionItem storage auction = auctions[auctionId];
 
-        require(block.timestamp >= auction.endTime, "Auction has not ended yet");
+        emit AuctionEndAttempt(auctionId, block.timestamp, auction.endTime);
+
+        // require(block.timestamp >= auction.endTime, "Auction has not ended yet");
 
         auction.ended = true;
-
-        // Transfer the highest bid to the auction creator
-        auction.creator.transfer(auction.highestBid);
+        (bool success, ) = auction.creator.call{value: auction.highestBid}("");
+        require(success, "Transfer to auction owner failed");
 
         emit AuctionEnded(auctionId, auction.highestBidder, auction.highestBid);
     }
 
-    // Function to withdraw funds for unsuccessful bidders
-    // function withdrawFunds() external {
-    //     uint256 amount = pendingReturns[msg.sender];
-    //     require(amount > 0, "No funds to withdraw");
-
-    //     pendingReturns[msg.sender] = 0;
-    //     payable(msg.sender).transfer(amount);
-
-    //     emit FundsWithdrawn(msg.sender, amount);
-    // }
 }
