@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "hardhat": "hardhat",
     "hardhat-test": "hardhat test",
-    "hardhat-deploy-local": "hardhat run ignition/modules/Lock.js --network localhost",
+    "hardhat-deploy-local": "hardhat run ignition/modules/deploy.js --network localhost",
     "hardhat-compile": "hardhat compile"
   },
   "keywords": [],
@@ -14,7 +14,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "hardhat": "^2.22.16"
+    "hardhat": "^2.22.16",
+    "sinon": "^19.0.2"
   },
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.2.3",
