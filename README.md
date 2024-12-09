@@ -68,6 +68,11 @@ node ./ignition/modules/event-listener.js
 ### API Endpoints
 Register Wallet: POST /register-wallet
 
+Register account wallets (parties involved in create-auction, bid-auction process) in the system
+
 Create Auction: POST /create-auction
 
 Bid Auction: POST /bid-auction
+
+Postman Collection link: https://github.com/JagannathAdhikary/auction-system/blob/main/doc/AuctionSystem.postman_collection.json
+Note: Set ENV variables required
