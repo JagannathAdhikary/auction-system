@@ -14,7 +14,7 @@ This project is an auction system built using Node.js, Express, and Ethereum sma
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/your-username/auction-system.git
+git clone https://github.com/JagannathAdhikary/auction-system.git
 cd auction-system
 ```
 
@@ -52,7 +52,7 @@ Example
     "prividerPrivateAddress":"<PRIVATE_ADDRESS>"
 }
 ```
-Note: <CONTRACT_ADDRESS> can be found from step 5 and for testing env providerPrivateAddress can be any private address that is generated in step 3 
+Note: <CONTRACT_ADDRESS> can be found from step 5 and providerPrivateAddress would be deployer of the contract (typically Account #0 in test env) paste the private address that is generated in step 3 
 
 ### 7. Start the Server and Event-listener
 ####  Start the Express server:
