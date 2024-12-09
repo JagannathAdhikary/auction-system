@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "16f29a60-cb0f-44f9-84e4-b8a529540390",
+		"name": "AuctionSystem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register Wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account\": \"0xdD2FD4581271e230360230F9337D5c0430Bf44C0\",\n    \"privateAddress\": \"0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appServer}}/register-wallet",
+					"host": [
+						"{{appServer}}"
+					],
+					"path": [
+						"register-wallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Auction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\",\n    \"itemRef\": \"Antique Vase\",\n    \"startPrice\": 1,\n    \"duration\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appServer}}/create-auction",
+					"host": [
+						"{{appServer}}"
+					],
+					"path": [
+						"create-auction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bid for Auction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"0x70997970C51812dc3A010C7d01b50e0d17dc79C8\",\n    \"auctionId\": 0,\n    \"bidAmount\": 8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appServer}}/bid-auction",
+					"host": [
+						"{{appServer}}"
+					],
+					"path": [
+						"bid-auction"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
